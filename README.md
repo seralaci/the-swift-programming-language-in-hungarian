@@ -22,7 +22,7 @@ For more info please visit: [Swift.org - Documentation](https://swift.org/docume
 - Properties
 - Methods
 - Subscripts
-- Inheritance  - Öröklődés
+- Inheritance  - [Öröklődés](markdown/Inheritance.md)
 - Initialization
 - Deinitialization
 - Automatic Reference Counting

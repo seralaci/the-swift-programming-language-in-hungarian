@@ -13,17 +13,17 @@
     <h2 class="chapter-name">Öröklődés</h2>
       
       	<section class="section">
-      		<p class="para">Egy osztály <em>örökölheti</em> egy másik osztály metódusait, tulajdonságait és egyéb jellemzőit. Amikor az egyik osztály a másikból örköklődik, akkor az öröklő osztályt <em>gyermek/származtatott osztálynak (subclass)</em>, míg azt az osztályt amiből öröklődik, <em>ős/szülőosztályának (superclass)</em> nevezzük. Az öröklődés egy olyan alapvető tulajdonsága az osztályoknak, ami megkülönbözteti a Swift egyéb típusaitól.</p><p class="para">Swift-ben az osztályok meg tudják hívni és elérik a szülő osztály metódusait, tulajdonságait, indexeit és a saját verzióikkal felül tudják definiálni ezeket a metódusokat, tulajdonságokat, indexeket annak érdekében, hogy módosítsák azok eredeti viselkedését. A Swift segítséget nyújt a felülbírálások helyességének ellenőrzésében azzal, hogy megvizsgálja a szülő osztályban a felülbírálandó definíció meglétét.</p><p class="para">Az osztályokban lehetőség van ún. tulajdonság megfigyelőket hozzárendelni az örökölt tulajdonságokhoz, hogy értesítést kapjon ha megváltozik a megfigyelt tulajdonság értéke. Ezek a megfigyelők bármilyen tulajdonsághoz hozzáadhatók, függetlenül attól hogy tárolt vagy számolt tulajdonságról van szó.</p>
+      		<p class="para">Egy osztály <em>örökölheti</em> egy másik osztály metódusait, tulajdonságait és egyéb jellemzőit. Amikor az egyik osztály a másikból öröklődik, akkor az öröklő osztályt <em>gyermek/származtatott osztálynak (subclass)</em>, míg azt az osztályt amiből öröklődik, <em>ős/szülőosztályának (superclass)</em> nevezzük. Az öröklődés egy olyan alapvető tulajdonsága az osztályoknak, ami megkülönbözteti a Swift egyéb típusaitól.</p><p class="para">Swift-ben az osztályok meg tudják hívni és elérik a szülőosztály metódusait, tulajdonságait, indexeit és a saját verziókkal felül tudják definiálni ezeket a metódusokat, tulajdonságokat, indexeket annak érdekében, hogy módosítsák azok eredeti viselkedését. A Swift segítséget nyújt a felülbírálások helyességének ellenőrzésében azzal, hogy megvizsgálja a szülő osztályban a felülbírálandó definíció meglétét.</p><p class="para">Az osztályokban lehetőség van ún. tulajdonság megfigyelőket hozzárendelni az örökölt tulajdonságokhoz, hogy értesítést kapjon, ha megváltozik a megfigyelt tulajdonság értéke. Ezek a megfigyelők bármilyen tulajdonsághoz hozzáadhatók függetlenül attól, hogy tárolt vagy számolt tulajdonságról van szó.</p>
     		</section> 
 
 
       <section class="section">
 	<a id="TP40016643-CH17-ID194">&#x200c;</a>
   <h3 class="section-name">Egy alaposztály létrehozása</h3>
-  <p class="para">Minden olyan osztályt ami nem öröklődik egy másik osztályból, <em>alaposztálynak</em> nevezzük.</p><div class="note">
+  <p class="para">Minden olyan osztályt, ami nem öröklődik egy másik osztályból, <em>alaposztálynak</em> nevezzük.</p><div class="note">
   <aside class="aside">
     	<p class="aside-title uppercase">Megjegyzés</p>
-    	<p class="para">A Swift osztályok nem öröklődnek automatikusan semmiféle univerzális alaposztályból. Az osztályok amelyek ősosztály nélkül vannak definiálva, automatikusan alaposztállyá válnak.
+    	<p class="para">A Swift osztályok nem öröklődnek automatikusan semmiféle univerzális alaposztályból. Az osztályok, amelyek ősosztály nélkül vannak definiálva, automatikusan alaposztállyá válnak.
     	</p>
     
   </aside>
@@ -35,7 +35,7 @@
             <li><code class="code-voice"><code class="kt">class</code> <code class="vc">Vehicle</code> {</code></li>
             <li><code class="code-voice">    <code class="kt">var</code> <code class="vc">currentSpeed</code> = <code class="m">0.0</code></code></li>
             <li><code class="code-voice">    <code class="kt">var</code> <code class="vc">description</code>: <code class="n"><!-- a href="" logicalPath="" -->String<!-- /a --></code> {</code></li>
-            <li><code class="code-voice">        <code class="kt">return</code> <code class="s">&quot;jelenleg </code>\(<code class="vc">currentSpeed</code>)<code class="s"> km/h sebességel halad&quot;</code></code></li>
+            <li><code class="code-voice">        <code class="kt">return</code> <code class="s">&quot;jelenleg </code>\(<code class="vc">currentSpeed</code>)<code class="s"> km/h sebességgel halad&quot;</code></code></li>
             <li><code class="code-voice">    }</code></li>
             <li><code class="code-voice">    <code class="kt">func</code> <code class="vc">makeNoise</code>() {</code></li>
             <li><code class="code-voice">        <code class="c">// nem csinálunk semmit - nem minden jármű csap zajt</code></code></li>
@@ -59,7 +59,7 @@
       <div class="Swift">
         <ol class="code-lines">
             <li><code class="code-voice"><code class="vc">print</code>(<code class="s">&quot;Jármű: </code>\(<code class="vc">someVehicle</code>.<code class="vc">description</code>)<code class="s">&quot;</code>)</code></li>
-            <li><code class="code-voice"><code class="c">// Jármű: jelenleg 0.0 km/h sebességel halad</code></code></li>
+            <li><code class="code-voice"><code class="c">// Jármű: jelenleg 0.0 km/h sebességgel halad</code></code></li>
         </ol>
       </div>
   </div>
@@ -69,7 +69,7 @@
 <section class="section">
 	<a id="TP40016643-CH17-ID195">&#x200c;</a>
   <h3 class="section-name">Származtatás</h3>
-  <p class="para"><em>Származtatásnak</em> nevezzük amikor egy új osztályt egy meglévőből örököltetünk. A származtatott osztály örökli a meglévő ősosztály jellemzőit, amiket aztán tovább tudsz finomítani. De természetesen a származtatott osztály tovább bővíthető saját jellemzőkkel.</p><p class="para">Ha szertnél egy osztályt egy meglévőből származtatni, akkor nincs más dolgod mint az új osztály neve után egy kettősponttal elválasztva megadni a meglévő osztály nevét, amiből származtatni szeretnéd:</p><section class="code-listing">
+  <p class="para"><em>Származtatásnak</em> nevezzük, amikor egy új osztályt egy meglévőből örököltetünk. A származtatott osztály örökli a meglévő ősosztály jellemzőit, amiket aztán tovább tudsz finomítani. De természetesen a származtatott osztály tovább bővíthető saját jellemzőkkel.</p><p class="para">Ha szeretnél egy osztályt egy meglévőből származtatni, akkor nincs más dolgod, mint az új osztály neve után egy kettősponttal elválasztva megadni a meglévő osztály nevét, amiből származtatni szeretnéd:</p><section class="code-listing">
   
   <div class="code-sample">
       <div class="Swift">
@@ -101,18 +101,18 @@
         </ol>
       </div>
   </div>
-</section><p class="para">Ugyanígy lehetőség van a <code class="code-voice">Bicycle</code> példány örökölt <code class="code-voice">currentSpeed</code> tulajdonságának módosítására is és kiirathatjuk a szintén örökölt <code class="code-voice">description</code> tulajdonság értékét is:</p><section class="code-listing">
+</section><p class="para">Ugyanígy lehetőség van a <code class="code-voice">Bicycle</code> példány örökölt <code class="code-voice">currentSpeed</code> tulajdonságának módosítására is és ki írathatjuk a szintén örökölt <code class="code-voice">description</code> tulajdonság értékét is:</p><section class="code-listing">
   
   <div class="code-sample">
       <div class="Swift">
         <ol class="code-lines">
             <li><code class="code-voice"><code class="vc">bicycle</code>.<code class="vc">currentSpeed</code> = <code class="m">15.0</code></code></li>
             <li><code class="code-voice"><code class="vc">print</code>(<code class="s">&quot;Bicikli: </code>\(<code class="vc">bicycle</code>.<code class="vc">description</code>)<code class="s">&quot;</code>)</code></li>
-            <li><code class="code-voice"><code class="c">// Bicikli: jelenleg 15.0 km/h sebességel halad</code></code></li>
+            <li><code class="code-voice"><code class="c">// Bicikli: jelenleg 15.0 km/h sebességgel halad</code></code></li>
         </ol>
       </div>
   </div>
-</section><p class="para">A származtatott osztályokat is tovább lehet származtatni. A következő példában a <code class="code-voice">Bicycle</code> osztályt származtatjuk tovább egy "tandem" néven ismert kétüléses bicikli létrehozásáhou:</p><section class="code-listing">
+</section><p class="para">A származtatott osztályokat is tovább lehet származtatni. A következő példában a <code class="code-voice">Bicycle</code> osztályt származtatjuk tovább egy "tandem" néven ismert kétüléses bicikli létrehozásához:</p><section class="code-listing">
   
   <div class="code-sample">
       <div class="Swift">
@@ -123,7 +123,7 @@
         </ol>
       </div>
   </div>
-</section><p class="para">A <code class="code-voice">Tandem</code> örökli a <code class="code-voice">Bicycle</code> osztály minden tulajdonságát és metódosát, ami viszont örökölte minden tulajdonságát és metódusát a <code class="code-voice">Vehicle</code> osztálynak. A <code class="code-voice">Tandem</code> osztály ezeken felül még tartalmaz egy új tárolt tulajdonságot is: <code class="code-voice">currentNumberOfPassengers</code>, aminek alapértéke <code class="code-voice">0</code>.</p><p class="para">Ha létrehozol egy <code class="code-voice">Tandem</code> példányt, akkor eléred az összes örökölt és saját tulajdonságot, illetve le tudod kérdezni a csak olvasható <code class="code-voice">description</code> tulajdonság értékét is, amit a <code class="code-voice">Vehicle</code> osztályból örökölt:</p><section class="code-listing">
+</section><p class="para">A <code class="code-voice">Tandem</code> örökli a <code class="code-voice">Bicycle</code> osztály minden tulajdonságát és metódusát, ami viszont örökölte minden tulajdonságát és metódusát a <code class="code-voice">Vehicle</code> osztálynak. A <code class="code-voice">Tandem</code> osztály ezeken felül még tartalmaz egy új tárolt tulajdonságot is: <code class="code-voice">currentNumberOfPassengers</code>, aminek alapértéke <code class="code-voice">0</code>.</p><p class="para">Ha létrehozol egy <code class="code-voice">Tandem</code> példányt, akkor eléred az összes örökölt és saját tulajdonságot, illetve le tudod kérdezni a csak olvasható <code class="code-voice">description</code> tulajdonság értékét is, amit a <code class="code-voice">Vehicle</code> osztályból örökölt:</p><section class="code-listing">
   
   <div class="code-sample">
       <div class="Swift">
@@ -133,7 +133,7 @@
             <li><code class="code-voice"><code class="vc">tandem</code>.<code class="vc">currentNumberOfPassengers</code> = <code class="m">2</code></code></li>
             <li><code class="code-voice"><code class="vc">tandem</code>.<code class="vc">currentSpeed</code> = <code class="m">22.0</code></code></li>
             <li><code class="code-voice"><code class="vc">print</code>(<code class="s">&quot;Tandem: </code>\(<code class="vc">tandem</code>.<code class="vc">description</code>)<code class="s">&quot;</code>)</code></li>
-            <li><code class="code-voice"><code class="c">// Tandem: jelenleg 22.0 km/h sebességel halad</code></code></li>
+            <li><code class="code-voice"><code class="c">// Tandem: jelenleg 22.0 km/h sebességgel halad</code></code></li>
         </ol>
       </div>
   </div>
@@ -143,7 +143,7 @@
 <section class="section">
 	<a id="TP40016643-CH17-ID196">&#x200c;</a>
   <h3 class="section-name">Felülírás (Overriding)</h3>
-  <p class="para">Egy származtatott osztály tartalmazhat saját példánymetódus, típusmetódus, példány tulajdonság, típus tulajdonság vagy akár index implementációt, amelyeket egyébként az ősosztályból örökölt. Ezt nevezzük <em>felülírásnak</em>.</p><p class="para">Ahhoz hogy felülírhassunk egy örökölt jellemzőt, az <code class="code-voice">override</code> kulcsszót oda kell biggyeszteni az új definíció elé. Ezzel egyértelműsíted a szándékodat, hogy valamit felül szeretnél írni és nem véletlenül adtál meg egyező definíciót. Nem várt következményekkel járhat ha véletlenül írunk felül valamit és emiatt az <code class="code-voice">override</code> kulcsszó használata nélküli felülírást a fordító hibaként fogja jelezni.</p><p class="para">Az <code class="code-voice">override</code> kulcsszó azt is jelzi a Swift fordító számára, hogy szükség van az ősosztályban (vagy annak valamelyik szülőjében) annak ellenörzésére, hogy a felülírandó jellemző létezik. Így biztosítva vagyunk, hogy a felülírás definíciója helyes.</p>
+  <p class="para">Egy származtatott osztály tartalmazhat saját példánymetódus, típusmetódus, példány tulajdonság, típus tulajdonság vagy akár index implementációt, amelyeket egyébként az ősosztályból örökölt. Ezt nevezzük <em>felülírásnak</em>.</p><p class="para">Ahhoz hogy felülírhassunk egy örökölt jellemzőt, az <code class="code-voice">override</code> kulcsszót oda kell biggyeszteni az új definíció elé. Ezzel egyértelműsíted a szándékodat, hogy valamit felül szeretnél írni és nem véletlenül adtál meg egyező definíciót. Nem várt következményekkel járhat, ha véletlenül írunk felül valamit és emiatt az <code class="code-voice">override</code> kulcsszó használata nélküli felülírást a fordító hibaként fogja jelezni.</p><p class="para">Az <code class="code-voice">override</code> kulcsszó azt is jelzi a Swift fordító számára, hogy szükség van az ősosztályban (vagy annak valamelyik szülőjében) annak ellenörzésére, hogy a felülírandó jellemző létezik. Így biztosítva vagyunk, hogy a felülírás definíciója helyes.</p>
   <section class="section">
 	<a id="TP40016643-CH17-ID197">&#x200c;</a>
   <h3 class="section-name">A szülőosztály metódusainak, tulajdonságainak és indexeinek elérése</h3>
@@ -168,7 +168,7 @@
         </ol>
       </div>
   </div>
-</section><p class="para">Ha létrehozunk egy új <code class="code-voice">Train</code> példányt és meghívjuk a <code class="code-voice">makeNoise()</code> metódusát, akkor láthatjuk hogy a <code class="code-voice">Train</code> osztályban meghatározott implementációja kerül meghívásra:</p><section class="code-listing">
+</section><p class="para">Ha létrehozunk egy új <code class="code-voice">Train</code> példányt és meghívjuk a <code class="code-voice">makeNoise()</code> metódusát, akkor láthatjuk, hogy a <code class="code-voice">Train</code> osztályban meghatározott implementációja kerül meghívásra:</p><section class="code-listing">
   
   <div class="code-sample">
       <div class="Swift">
@@ -185,11 +185,11 @@
 <section class="section">
 	<a id="TP40016643-CH17-ID199">&#x200c;</a>
   <h3 class="section-name">Tulajdonságok felülírása</h3>
-  <p class="para">Lehetőség van egy öröklött példány- vagy típus tulajdonságok felülírására is, saját getter és setter definiálható hozzájuk vagy akéár tulajdonság megfigyelőt rendelhetünk hozzájuk, hogy a felülíró tulajdonság értesüljön róla ha a mögöttes tulajdonság értéke megváltozik.</p>
+  <p class="para">Lehetőség van egy öröklött példány- vagy típus tulajdonságok felülírására is, saját getter és setter definiálható hozzájuk vagy akár tulajdonság megfigyelőt rendelhetünk hozzájuk, hogy a felülíró tulajdonság értesüljön róla, ha a mögöttes tulajdonság értéke megváltozik.</p>
   <section class="section">
 	<a id="TP40016643-CH17-ID200">&#x200c;</a>
-  <h3 class="section-name">Tulajdonság fetter és setter felülírása</h3>
-  <p class="para">Saját getter (és setter, ha szükséges) hozható létre hogy felülírjunk <em>bármilyen</em> örökölt tulajdonságot, függetlenül attól hogy tárolt vagy kalkulált tulajonságként lettek azok implementálva. Az örökölt tulajdonság kalkulált vagy tárolt jellege nem ismert a származtatott osztály számára, csupán a tulajdonság nevét és típusát ismeri. A felülírandó tulajdonság nevét és típusát mindig meg kell határozni hogy a fordító ellenőrizni tudja azok meglétét az ősosztályban.</p><p class="para">Akár arra is lehetőség van, hogy egy csak olvasható tulajdonságot írhatóvá tegyünk a getter és setter implementációójával a származtatott osztályban. Viszont nincs lehetőségünk egy már írható tulajdonságot csak olvashatóvá tenni.</p><div class="note">
+  <h3 class="section-name">Tulajdonság getter és setter felülírása</h3>
+  <p class="para">Saját getter (és setter, ha szükséges) hozható létre hogy felülírjunk <em>bármilyen</em> örökölt tulajdonságot, függetlenül attól, hogy tárolt vagy kalkulált tulajdonságként lettek azok implementálva. Az örökölt tulajdonság számított vagy tárolt jellege nem ismert a származtatott osztály számára, csupán a tulajdonság nevét és típusát ismeri. A felülírandó tulajdonság nevét és típusát mindig meg kell határozni, hogy a fordító ellenőrizni tudja azok meglétét az ősosztályban.</p><p class="para">Akár arra is lehetőség van, hogy egy csak olvasható tulajdonságot írhatóvá tegyünk a getter és setter implementációójával a származtatott osztályban. Viszont nincs lehetőségünk egy már írható tulajdonságot csak olvashatóvá tenni.</p><div class="note">
   <aside class="aside">
     	<p class="aside-title uppercase">Megjegyzés</p>
     	<p class="para">Ha egy setter-t definiálunk a felülíró tulajdonsághoz, akkor a getter felülírása is kötelező. Ha nem akarod módosítani az örökölt tulajdonság getter implementációját, akkor egyszerűen csak passzoljuk vissza az értéket a <code class="code-voice">super.someProperty</code> használatával a felülíró getter-ből, ahol a <code class="code-voice">someProperty</code> a felülírandó tulajdonság neve.
@@ -219,7 +219,7 @@
             <li><code class="code-voice"><code class="vc">car</code>.<code class="vc">currentSpeed</code> = <code class="m">25.0</code></code></li>
             <li><code class="code-voice"><code class="vc">car</code>.<code class="vc">gear</code> = <code class="m">3</code></code></li>
             <li><code class="code-voice"><code class="vc">print</code>(<code class="s">&quot;Autó: </code>\(<code class="vc">car</code>.<code class="vc">description</code>)<code class="s">&quot;</code>)</code></li>
-            <li><code class="code-voice"><code class="c">// Autó: jelenleg 25.0 km/h sebességel halad 3. sebességi fokozatban</code></code></li>
+            <li><code class="code-voice"><code class="c">// Autó: jelenleg 25.0 km/h sebességgel halad 3. sebességi fokozatban</code></code></li>
         </ol>
       </div>
   </div>
@@ -229,10 +229,10 @@
 <section class="section">
 	<a id="TP40016643-CH17-ID201">&#x200c;</a>
   <h3 class="section-name">Tulajdonság megfigyelők felülírása</h3>
-  <p class="para">A tulajdonságok felülírásával megfigyelőt rendelhetünk egy örökölt tulajdonsághoz. Ez lehetőséget biztosít számunkra, hogy értesüljünk ha egy örökölt tulajdonság értéke megváltozott, függetlenül attól hogy miként volt eredetileg implementálva a tulajdonság. Tovább információt a tulajdonság megfigyelőkről itt találhatsz: <a rel="me" data-id="//apple_ref/doc/uid/TP40016643-CH14-ID262" href="Properties.xhtml#TP40016643-CH14-ID262">Property Observers</a>.</p><div class="note">
+  <p class="para">A tulajdonságok felülírásával megfigyelőt rendelhetünk egy örökölt tulajdonsághoz. Ez lehetőséget biztosít számunkra, hogy értesüljünk, ha egy örökölt tulajdonság értéke megváltozott, függetlenül attól, hogy miként volt eredetileg implementálva a tulajdonság. Tovább információt a tulajdonság megfigyelőkről itt találhatsz: <a rel="me" data-id="//apple_ref/doc/uid/TP40016643-CH14-ID262" href="Properties.xhtml#TP40016643-CH14-ID262">Tulajdonság megfigyelők</a>.</p><div class="note">
   <aside class="aside">
     	<p class="aside-title uppercase">Megjegyzés</p>
-    	<p class="para">Nincs lehetőség örökölt konstans tárolt vagy csak olvasható kalkulált tulajdonságokhoz megfigyelőt rendelni. Ezeknek a tulajdonságoknak az értékét nem lehet beállítani és így nincs értelme a <code class="code-voice">willSet</code> vagy <code class="code-voice">didSet</code> mefigyelőket implementálni.
+    	<p class="para">Nincs lehetőség örökölt konstans tárolt vagy csak olvasható kalkulált tulajdonságokhoz megfigyelőt rendelni. Ezeknek a tulajdonságoknak az értékét nem lehet beállítani és így nincs értelme a <code class="code-voice">willSet</code> vagy <code class="code-voice">didSet</code> megfigyelőket implementálni.
     	</p>
     <p class="para">Szintén vegyük figyelembe, hogy nincs lehetőség egyszerre felülírni egy setter-t és egy megfigyelőt ugyanazon tulajdonsághoz. Ha mégis szeretnél értesülni egy tulajdonság értékének változásáról, miközben már felülbíráltad a setter-t, akkor figyeljük meg az értékek változását az adott setter-en belül.</p>
   </aside>
@@ -259,7 +259,7 @@
             <li><code class="code-voice"><code class="kt">let</code> <code class="vc">automatic</code> = <code class="vc">AutomaticCar</code>()</code></li>
             <li><code class="code-voice"><code class="vc">automatic</code>.<code class="vc">currentSpeed</code> = <code class="m">35.0</code></code></li>
             <li><code class="code-voice"><code class="vc">print</code>(<code class="s">&quot;Automata: </code>\(<code class="vc">automatic</code>.<code class="vc">description</code>)<code class="s">&quot;</code>)</code></li>
-            <li><code class="code-voice"><code class="c">// Automata: jelenleg 35.0 km/h sebességel halad 4. sebességi fokozatban</code></code></li>
+            <li><code class="code-voice"><code class="c">// Automata: jelenleg 35.0 km/h sebességgel halad 4. sebességi fokozatban</code></code></li>
         </ol>
       </div>
   </div>
@@ -273,7 +273,7 @@
 <section class="section">
 	<a id="TP40016643-CH17-ID202">&#x200c;</a>
   <h3 class="section-name">Felülírás megelőzése</h3>
-  <p class="para">A <em>final</em> használatával tudjuk megvédeni egy metódus, tulajdonság vagy index felülírását. Ehhez a <code class="code-voice">final</code> módosítot rakjuk a metódushoz, tulajdonsághoz vagy indexhez tartozó kulcsszó elé (azaz <code class="code-voice">final var</code>, <code class="code-voice">final func</code>, <code class="code-voice">final class func</code> illetve <code class="code-voice">final subscript</code>).</p><p class="para">Ha egy final módosítóval ellátott metódust, tulajdonságot vagy indexet próbálunk meg felülírni egy származtatott osztályban, akkor már fordításkor hibát fogunk kapni.</p><p class="para">De akár egy egész osztály esetén használható a <code class="code-voice">final</code> módosító, elég csak a <code class="code-voice">class</code> kulcsszó elé írni(<code class="code-voice">final class</code>). Ezután minden származtatási kísérlet fordítási hibával fog járni az adott osztály esetén.</p>
+  <p class="para">A <em>final</em> használatával tudjuk megvédeni egy metódus, tulajdonság vagy index felülírását. Ehhez a <code class="code-voice">final</code> módosítot rakjuk a metódushoz, tulajdonsághoz vagy indexhez tartozó kulcsszó elé (azaz <code class="code-voice">final var</code>, <code class="code-voice">final func</code>, <code class="code-voice">final class func</code> illetve <code class="code-voice">final subscript</code>).</p><p class="para">Ha egy final módosítóval ellátott metódust, tulajdonságot vagy indexet próbálunk meg felülírni egy származtatott osztályban, akkor már fordításkor hibát fogunk kapni.</p><p class="para">De akár egy egész osztály esetén használható a <code class="code-voice">final</code> módosító, elég csak a <code class="code-voice">class</code> kulcsszó elé írni (<code class="code-voice">final class</code>). Ezután minden származtatási kísérlet fordítási hibával fog járni az adott osztály esetén.</p>
   
 </section>
 
