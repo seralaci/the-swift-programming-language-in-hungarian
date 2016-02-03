@@ -10,24 +10,24 @@
       <div id="chapter_container" class='conceptualwithtasks'>
   <article class="chapter">
     <a id="TP40016643-CH17">&#x200c;</a><a id="TP40016643-CH17-ID193">&#x200c;</a>
-    <h2 class="chapter-name">Inheritance</h2>
+    <h2 class="chapter-name">Öröklődés</h2>
       
       	<section class="section">
-      		<p class="para">A class can <em>inherit</em> methods, properties, and other characteristics from another class. When one class inherits from another, the inheriting class is known as a <em>subclass</em>, and the class it inherits from is known as its <em>superclass</em>. Inheritance is a fundamental behavior that differentiates classes from other types in Swift.</p><p class="para">Classes in Swift can call and access methods, properties, and subscripts belonging to their superclass and can provide their own overriding versions of those methods, properties, and subscripts to refine or modify their behavior. Swift helps to ensure your overrides are correct by checking that the override definition has a matching superclass definition.</p><p class="para">Classes can also add property observers to inherited properties in order to be notified when the value of a property changes. Property observers can be added to any property, regardless of whether it was originally defined as a stored or computed property.</p>
+      		<p class="para">Egy osztály <em>örökölheti</em> egy másik osztály metódusait, tulajdonságait és egyéb jellemzőit. Amikor az egyik osztály a másikból öröklődik, akkor az öröklő osztályt <em>gyermek/származtatott osztálynak (subclass)</em>, míg azt az osztályt amiből öröklődik, <em>ős/szülőosztályának (superclass)</em> nevezzük. Az öröklődés egy olyan alapvető tulajdonsága az osztályoknak, ami megkülönbözteti a Swift egyéb típusaitól.</p><p class="para">Swift-ben az osztályok meg tudják hívni és elérik a szülőosztály metódusait, tulajdonságait, indexeit és a saját verziókkal felül tudják definiálni ezeket a metódusokat, tulajdonságokat, indexeket annak érdekében, hogy módosítsák azok eredeti viselkedését. A Swift segítséget nyújt a felülbírálások helyességének ellenőrzésében azzal, hogy megvizsgálja a szülő osztályban a felülbírálandó definíció meglétét.</p><p class="para">Az osztályokban lehetőség van ún. tulajdonság megfigyelőket hozzárendelni az örökölt tulajdonságokhoz, hogy értesítést kapjon, ha megváltozik a megfigyelt tulajdonság értéke. Ezek a megfigyelők bármilyen tulajdonsághoz hozzáadhatók függetlenül attól, hogy tárolt vagy számolt tulajdonságról van szó.</p>
     		</section> 
 
 
       <section class="section">
 	<a id="TP40016643-CH17-ID194">&#x200c;</a>
-  <h3 class="section-name">Defining a Base Class</h3>
-  <p class="para">Any class that does not inherit from another class is known as a <em>base class</em>.</p><div class="note">
+  <h3 class="section-name">Egy alaposztály létrehozása</h3>
+  <p class="para">Minden olyan osztályt, ami nem öröklődik egy másik osztályból, <em>alaposztálynak</em> nevezzük.</p><div class="note">
   <aside class="aside">
-    	<p class="aside-title uppercase">Note</p>
-    	<p class="para">Swift classes do not inherit from a universal base class. Classes you define without specifying a superclass automatically become base classes for you to build upon.
+    	<p class="aside-title uppercase">Megjegyzés</p>
+    	<p class="para">A Swift osztályok nem öröklődnek automatikusan semmiféle univerzális alaposztályból. Az osztályok, amelyek ősosztály nélkül vannak definiálva, automatikusan alaposztállyá válnak.
     	</p>
     
   </aside>
-</div><p class="para">The example below defines a base class called <code class="code-voice">Vehicle</code>. This base class defines a stored property called <code class="code-voice">currentSpeed</code>, with a default value of <code class="code-voice">0.0</code> (inferring a property type of <code class="code-voice">Double</code>). The <code class="code-voice">currentSpeed</code> property’s value is used by a read-only computed <code class="code-voice">String</code> property called <code class="code-voice">description</code> to create a description of the vehicle.</p><p class="para">The <code class="code-voice">Vehicle</code> base class also defines a method called <code class="code-voice">makeNoise</code>. This method does not actually do anything for a base <code class="code-voice">Vehicle</code> instance, but will be customized by subclasses of <code class="code-voice">Vehicle</code> later on:</p><section class="code-listing">
+</div><p class="para">A következő példa egy <code class="code-voice">Vehicle</code> nevű alaposztályt definiál. Ez az alaposztály tartalmaz egy <code class="code-voice">currentSpeed</code> nevű tárolt tulajdonságot, melynek az alapértéke <code class="code-voice">0.0</code> (így a tulajdonság <code class="code-voice">Double</code> típusú lesz). Ennek a <code class="code-voice">currentSpeed</code> tulajdonságnak az értékét a <code class="code-voice">String</code> típusú, csak olvasható, <code class="code-voice">description</code> nevű kalkulált  tulajdonság használja a jármű szöveges leírásához.</p><p class="para">A <code class="code-voice">Vehicle</code> alaposztály tartalmaz még egy <code class="code-voice">makeNoise</code> nevű metódust is. Ez a metódus jelenleg nem csinál semmit egy alap <code class="code-voice">Vehicle</code> példány esetén, de majd később felülbíráljuk a <code class="code-voice">Vehicle</code> osztály származtatott osztályaiban:</p><section class="code-listing">
   
   <div class="code-sample">
       <div class="Swift">
@@ -35,16 +35,16 @@
             <li><code class="code-voice"><code class="kt">class</code> <code class="vc">Vehicle</code> {</code></li>
             <li><code class="code-voice">    <code class="kt">var</code> <code class="vc">currentSpeed</code> = <code class="m">0.0</code></code></li>
             <li><code class="code-voice">    <code class="kt">var</code> <code class="vc">description</code>: <code class="n"><!-- a href="" logicalPath="" -->String<!-- /a --></code> {</code></li>
-            <li><code class="code-voice">        <code class="kt">return</code> <code class="s">&quot;traveling at </code>\(<code class="vc">currentSpeed</code>)<code class="s"> miles per hour&quot;</code></code></li>
+            <li><code class="code-voice">        <code class="kt">return</code> <code class="s">&quot;jelenleg </code>\(<code class="vc">currentSpeed</code>)<code class="s"> km/h sebességgel halad&quot;</code></code></li>
             <li><code class="code-voice">    }</code></li>
             <li><code class="code-voice">    <code class="kt">func</code> <code class="vc">makeNoise</code>() {</code></li>
-            <li><code class="code-voice">        <code class="c">// do nothing - an arbitrary vehicle doesn&#39;t necessarily make a noise</code></code></li>
+            <li><code class="code-voice">        <code class="c">// nem csinálunk semmit - nem minden jármű csap zajt</code></code></li>
             <li><code class="code-voice">    }</code></li>
             <li><code class="code-voice">}</code></li>
         </ol>
       </div>
   </div>
-</section><p class="para">You create a new instance of <code class="code-voice">Vehicle</code> with <em>initializer syntax</em>, which is written as a <code class="code-voice">TypeName</code> followed by empty parentheses:</p><section class="code-listing">
+</section><p class="para">Új példányt a <code class="code-voice">Vehicle</code> osztályból <em>inicializáló szintaxis</em> segítségével tudsz létrehozni, ami egy <code class="code-voice">TípusNév</code> majd üres zárójelek:</p><section class="code-listing">
   
   <div class="code-sample">
       <div class="Swift">
@@ -53,34 +53,34 @@
         </ol>
       </div>
   </div>
-</section><p class="para">Having created a new <code class="code-voice">Vehicle</code> instance, you can access its <code class="code-voice">description</code> property to print a human-readable description of the vehicle’s current speed:</p><section class="code-listing">
+</section><p class="para">Miután létrehoztál egy új példányt a <code class="code-voice">Vehicle</code> osztályból, el tudod érni a <code class="code-voice">description</code> tulajdonságot hogy ki tudd írni emberek számára is könnyen értelmezhető formában a jármű sebességét:</p><section class="code-listing">
   
   <div class="code-sample">
       <div class="Swift">
         <ol class="code-lines">
-            <li><code class="code-voice"><code class="vc">print</code>(<code class="s">&quot;Vehicle: </code>\(<code class="vc">someVehicle</code>.<code class="vc">description</code>)<code class="s">&quot;</code>)</code></li>
-            <li><code class="code-voice"><code class="c">// Vehicle: traveling at 0.0 miles per hour</code></code></li>
+            <li><code class="code-voice"><code class="vc">print</code>(<code class="s">&quot;Jármű: </code>\(<code class="vc">someVehicle</code>.<code class="vc">description</code>)<code class="s">&quot;</code>)</code></li>
+            <li><code class="code-voice"><code class="c">// Jármű: jelenleg 0.0 km/h sebességgel halad</code></code></li>
         </ol>
       </div>
   </div>
-</section><p class="para">The <code class="code-voice">Vehicle</code> class defines common characteristics for an arbitrary vehicle, but is not much use in itself. To make it more useful, you need to refine it to describe more specific kinds of vehicle.</p>
+</section><p class="para">A <code class="code-voice">Vehicle</code> osztály a járművek általános jellemzőit határozza meg, de ez önmagában nem túl sok. Ahhoz hogy igazán használható legyen, tovább kell finomítani további járművek leírásával.</p>
   
 </section>
 <section class="section">
 	<a id="TP40016643-CH17-ID195">&#x200c;</a>
-  <h3 class="section-name">Subclassing</h3>
-  <p class="para"><em>Subclassing</em> is the act of basing a new class on an existing class. The subclass inherits characteristics from the existing class, which you can then refine. You can also add new characteristics to the subclass.</p><p class="para">To indicate that a subclass has a superclass, write the subclass name before the superclass name, separated by a colon:</p><section class="code-listing">
+  <h3 class="section-name">Származtatás</h3>
+  <p class="para"><em>Származtatásnak</em> nevezzük, amikor egy új osztályt egy meglévőből örököltetünk. A származtatott osztály örökli a meglévő ősosztály jellemzőit, amiket aztán tovább tudsz finomítani. De természetesen a származtatott osztály tovább bővíthető saját jellemzőkkel.</p><p class="para">Ha szeretnél egy osztályt egy meglévőből származtatni, akkor nincs más dolgod, mint az új osztály neve után egy kettősponttal elválasztva megadni a meglévő osztály nevét, amiből származtatni szeretnéd:</p><section class="code-listing">
   
   <div class="code-sample">
       <div class="Swift">
         <ol class="code-lines">
             <li><code class="code-voice"><code class="kt">class</code> <code class="vc">SomeSubclass</code>: <code class="n"><!-- a href="" logicalPath="" -->SomeSuperclass<!-- /a --></code> {</code></li>
-            <li><code class="code-voice">    <code class="c">// subclass definition goes here</code></code></li>
+            <li><code class="code-voice">    <code class="c">// ide jön a származtatott osztály törzse</code></code></li>
             <li><code class="code-voice">}</code></li>
         </ol>
       </div>
   </div>
-</section><p class="para">The following example defines a subclass called <code class="code-voice">Bicycle</code>, with a superclass of <code class="code-voice">Vehicle</code>:</p><section class="code-listing">
+</section><p class="para">A következő példa egy <code class="code-voice">Bicycle</code> nevű osztályt definiál, ami a <code class="code-voice">Vehicle</code> osztályból van származtatva:</p><section class="code-listing">
   
   <div class="code-sample">
       <div class="Swift">
@@ -91,7 +91,7 @@
         </ol>
       </div>
   </div>
-</section><p class="para">The new <code class="code-voice">Bicycle</code> class automatically gains all of the characteristics of <code class="code-voice">Vehicle</code>, such as its <code class="code-voice">currentSpeed</code> and <code class="code-voice">description</code> properties and its <code class="code-voice">makeNoise()</code> method.</p><p class="para">In addition to the characteristics it inherits, the <code class="code-voice">Bicycle</code> class defines a new stored property, <code class="code-voice">hasBasket</code>, with a default value of <code class="code-voice">false</code> (inferring a type of <code class="code-voice">Bool</code> for the property).</p><p class="para">By default, any new <code class="code-voice">Bicycle</code> instance you create will not have a basket. You can set the <code class="code-voice">hasBasket</code> property to <code class="code-voice">true</code> for a particular <code class="code-voice">Bicycle</code> instance after that instance is created:</p><section class="code-listing">
+</section><p class="para">Az új <code class="code-voice">Bicycle</code> osztály automatikusan örökli a <code class="code-voice">Vehicle</code> jellemzőit, azaz a <code class="code-voice">currentSpeed</code> és <code class="code-voice">description</code> tulajdonságokat és a <code class="code-voice">makeNoise()</code> nevű metódust.</p><p class="para">Az örökölt dolgokon felül a <code class="code-voice">Bicycle</code> osztályban definiálva lett egy új tárolt tulajdonság, a <code class="code-voice">hasBasket</code>, aminek alapértelmezett érteke <code class="code-voice">false</code> (így a tulajdonság típusa <code class="code-voice">Bool</code>).</p><p class="para">Alapértelmezetten, egyik újonnan létrehozott <code class="code-voice">Bicycle</code> példány sem rendelkezik kosárral. A <code class="code-voice">hasBasket</code> tulajdonság <code class="code-voice">true</code> értékre állítható egy adott <code class="code-voice">Bicycle</code> példány esetén, miután azt létrehoztuk:</p><section class="code-listing">
   
   <div class="code-sample">
       <div class="Swift">
@@ -101,18 +101,18 @@
         </ol>
       </div>
   </div>
-</section><p class="para">You can also modify the inherited <code class="code-voice">currentSpeed</code> property of a <code class="code-voice">Bicycle</code> instance, and query the instance’s inherited <code class="code-voice">description</code> property:</p><section class="code-listing">
+</section><p class="para">Ugyanígy lehetőség van a <code class="code-voice">Bicycle</code> példány örökölt <code class="code-voice">currentSpeed</code> tulajdonságának módosítására is és ki írathatjuk a szintén örökölt <code class="code-voice">description</code> tulajdonság értékét is:</p><section class="code-listing">
   
   <div class="code-sample">
       <div class="Swift">
         <ol class="code-lines">
             <li><code class="code-voice"><code class="vc">bicycle</code>.<code class="vc">currentSpeed</code> = <code class="m">15.0</code></code></li>
-            <li><code class="code-voice"><code class="vc">print</code>(<code class="s">&quot;Bicycle: </code>\(<code class="vc">bicycle</code>.<code class="vc">description</code>)<code class="s">&quot;</code>)</code></li>
-            <li><code class="code-voice"><code class="c">// Bicycle: traveling at 15.0 miles per hour</code></code></li>
+            <li><code class="code-voice"><code class="vc">print</code>(<code class="s">&quot;Bicikli: </code>\(<code class="vc">bicycle</code>.<code class="vc">description</code>)<code class="s">&quot;</code>)</code></li>
+            <li><code class="code-voice"><code class="c">// Bicikli: jelenleg 15.0 km/h sebességgel halad</code></code></li>
         </ol>
       </div>
   </div>
-</section><p class="para">Subclasses can themselves be subclassed. The next example creates a subclass of <code class="code-voice">Bicycle</code> for a two-seater bicycle known as a “tandem”:</p><section class="code-listing">
+</section><p class="para">A származtatott osztályokat is tovább lehet származtatni. A következő példában a <code class="code-voice">Bicycle</code> osztályt származtatjuk tovább egy "tandem" néven ismert kétüléses bicikli létrehozásához:</p><section class="code-listing">
   
   <div class="code-sample">
       <div class="Swift">
@@ -123,7 +123,7 @@
         </ol>
       </div>
   </div>
-</section><p class="para"><code class="code-voice">Tandem</code> inherits all of the properties and methods from <code class="code-voice">Bicycle</code>, which in turn inherits all of the properties and methods from <code class="code-voice">Vehicle</code>. The <code class="code-voice">Tandem</code> subclass also adds a new stored property called <code class="code-voice">currentNumberOfPassengers</code>, with a default value of <code class="code-voice">0</code>.</p><p class="para">If you create an instance of <code class="code-voice">Tandem</code>, you can work with any of its new and inherited properties, and query the read-only <code class="code-voice">description</code> property it inherits from <code class="code-voice">Vehicle</code>:</p><section class="code-listing">
+</section><p class="para">A <code class="code-voice">Tandem</code> örökli a <code class="code-voice">Bicycle</code> osztály minden tulajdonságát és metódusát, ami viszont örökölte minden tulajdonságát és metódusát a <code class="code-voice">Vehicle</code> osztálynak. A <code class="code-voice">Tandem</code> osztály ezeken felül még tartalmaz egy új tárolt tulajdonságot is: <code class="code-voice">currentNumberOfPassengers</code>, aminek alapértéke <code class="code-voice">0</code>.</p><p class="para">Ha létrehozol egy <code class="code-voice">Tandem</code> példányt, akkor eléred az összes örökölt és saját tulajdonságot, illetve le tudod kérdezni a csak olvasható <code class="code-voice">description</code> tulajdonság értékét is, amit a <code class="code-voice">Vehicle</code> osztályból örökölt:</p><section class="code-listing">
   
   <div class="code-sample">
       <div class="Swift">
@@ -133,7 +133,7 @@
             <li><code class="code-voice"><code class="vc">tandem</code>.<code class="vc">currentNumberOfPassengers</code> = <code class="m">2</code></code></li>
             <li><code class="code-voice"><code class="vc">tandem</code>.<code class="vc">currentSpeed</code> = <code class="m">22.0</code></code></li>
             <li><code class="code-voice"><code class="vc">print</code>(<code class="s">&quot;Tandem: </code>\(<code class="vc">tandem</code>.<code class="vc">description</code>)<code class="s">&quot;</code>)</code></li>
-            <li><code class="code-voice"><code class="c">// Tandem: traveling at 22.0 miles per hour</code></code></li>
+            <li><code class="code-voice"><code class="c">// Tandem: jelenleg 22.0 km/h sebességgel halad</code></code></li>
         </ol>
       </div>
   </div>
@@ -142,20 +142,20 @@
 </section>
 <section class="section">
 	<a id="TP40016643-CH17-ID196">&#x200c;</a>
-  <h3 class="section-name">Overriding</h3>
-  <p class="para">A subclass can provide its own custom implementation of an instance method, type method, instance property, type property, or subscript that it would otherwise inherit from a superclass. This is known as <em>overriding</em>.</p><p class="para">To override a characteristic that would otherwise be inherited, you prefix your overriding definition with the <code class="code-voice">override</code> keyword. Doing so clarifies that you intend to provide an override and have not provided a matching definition by mistake. Overriding by accident can cause unexpected behavior, and any overrides without the <code class="code-voice">override</code> keyword are diagnosed as an error when your code is compiled.</p><p class="para">The <code class="code-voice">override</code> keyword also prompts the Swift compiler to check that your overriding class’s superclass (or one of its parents) has a declaration that matches the one you provided for the override. This check ensures that your overriding definition is correct.</p>
+  <h3 class="section-name">Felülírás (Overriding)</h3>
+  <p class="para">Egy származtatott osztály tartalmazhat saját példánymetódus, típusmetódus, példány tulajdonság, típus tulajdonság vagy akár index implementációt, amelyeket egyébként az ősosztályból örökölt. Ezt nevezzük <em>felülírásnak</em>.</p><p class="para">Ahhoz hogy felülírhassunk egy örökölt jellemzőt, az <code class="code-voice">override</code> kulcsszót oda kell biggyeszteni az új definíció elé. Ezzel egyértelműsíted a szándékodat, hogy valamit felül szeretnél írni és nem véletlenül adtál meg egyező definíciót. Nem várt következményekkel járhat, ha véletlenül írunk felül valamit és emiatt az <code class="code-voice">override</code> kulcsszó használata nélküli felülírást a fordító hibaként fogja jelezni.</p><p class="para">Az <code class="code-voice">override</code> kulcsszó azt is jelzi a Swift fordító számára, hogy szükség van az ősosztályban (vagy annak valamelyik szülőjében) annak ellenörzésére, hogy a felülírandó jellemző létezik. Így biztosítva vagyunk, hogy a felülírás definíciója helyes.</p>
   <section class="section">
 	<a id="TP40016643-CH17-ID197">&#x200c;</a>
-  <h3 class="section-name">Accessing Superclass Methods, Properties, and Subscripts</h3>
-  <p class="para">When you provide a method, property, or subscript override for a subclass, it is sometimes useful to use the existing superclass implementation as part of your override. For example, you can refine the behavior of that existing implementation, or store a modified value in an existing inherited variable.</p><p class="para">Where this is appropriate, you access the superclass version of a method, property, or subscript by using the <code class="code-voice">super</code> prefix:</p><ul class="list-bullet">
-  <li class="item"><p class="para">An overridden method named <code class="code-voice">someMethod()</code> can call the superclass version of <code class="code-voice">someMethod()</code> by calling <code class="code-voice">super.someMethod()</code> within the overriding method implementation.</p></li><li class="item"><p class="para">An overridden property called <code class="code-voice">someProperty</code> can access the superclass version of <code class="code-voice">someProperty</code> as <code class="code-voice">super.someProperty</code> within the overriding getter or setter implementation.</p></li><li class="item"><p class="para">An overridden subscript for <code class="code-voice">someIndex</code> can access the superclass version of the same subscript as <code class="code-voice">super[someIndex]</code> from within the overriding subscript implementation.</p></li>
+  <h3 class="section-name">A szülőosztály metódusainak, tulajdonságainak és indexeinek elérése</h3>
+  <p class="para">Amikor egy származtatott osztályban felülírsz egy metódust, tulajdonságot vagy indexet, akkor hasznos lehet az ősosztálybeli implementációt is elérni. Például módosítani tudod a meglévő implementációt vagy új értéket adhatsz egy örökölt változónak.</p><p class="para">Ahol ez indokolt, el tudod érni az ősosztály metódusát, tulajdonságát vagy indexét a <code class="code-voice">super</code> előtag használatával:</p><ul class="list-bullet">
+  <li class="item"><p class="para">A <code class="code-voice">someMethod()</code> nevű felülíró metódusban meg tudod hívni az ősosztály <code class="code-voice">someMethod()</code> metódusát a <code class="code-voice">super.someMethod()</code> segítségével az új implementáción belül.</p></li><li class="item"><p class="para">A <code class="code-voice">someProperty</code> nevű felülíró tulajdonság getter vagy setter implementációjából az ősosztály <code class="code-voice">someProperty</code> tulajdonságát a <code class="code-voice">super.someProperty</code> használatával tudod elérni.</p></li><li class="item"><p class="para">A <code class="code-voice">someIndex</code> felülíró index implementációjából pedig a <code class="code-voice">super[someIndex]</code> segítségével tudod elérni a szülőosztályben definiált változatot.</p></li>
 </ul>
   
 </section>
 <section class="section">
 	<a id="TP40016643-CH17-ID198">&#x200c;</a>
-  <h3 class="section-name">Overriding Methods</h3>
-  <p class="para">You can override an inherited instance or type method to provide a tailored or alternative implementation of the method within your subclass.</p><p class="para">The following example defines a new subclass of <code class="code-voice">Vehicle</code> called <code class="code-voice">Train</code>, which overrides the <code class="code-voice">makeNoise()</code> method that <code class="code-voice">Train</code> inherits from <code class="code-voice">Vehicle</code>:</p><section class="code-listing">
+  <h3 class="section-name">Metódusok felülírása</h3>
+  <p class="para">Lehetőség van egy öröklött példány- vagy típusmetódus felülírására, hogy saját implementációt tudjuk meghatározni a származtatott osztály számára.</p><p class="para">A következő példában a <code class="code-voice">Vehicle</code> osztály <code class="code-voice">Train</code> nevű származtatott osztályát hozzuk létre, amiben felülírjuk a <code class="code-voice">makeNoise()</code> metódust amit a <code class="code-voice">Train</code>, a <code class="code-voice">Vehicle</code> osztálytól örökölt:</p><section class="code-listing">
   
   <div class="code-sample">
       <div class="Swift">
@@ -168,14 +168,14 @@
         </ol>
       </div>
   </div>
-</section><p class="para">If you create a new instance of <code class="code-voice">Train</code> and call its <code class="code-voice">makeNoise()</code> method, you can see that the <code class="code-voice">Train</code> subclass version of the method is called:</p><section class="code-listing">
+</section><p class="para">Ha létrehozunk egy új <code class="code-voice">Train</code> példányt és meghívjuk a <code class="code-voice">makeNoise()</code> metódusát, akkor láthatjuk, hogy a <code class="code-voice">Train</code> osztályban meghatározott implementációja kerül meghívásra:</p><section class="code-listing">
   
   <div class="code-sample">
       <div class="Swift">
         <ol class="code-lines">
             <li><code class="code-voice"><code class="kt">let</code> <code class="vc">train</code> = <code class="vc">Train</code>()</code></li>
             <li><code class="code-voice"><code class="vc">train</code>.<code class="vc">makeNoise</code>()</code></li>
-            <li><code class="code-voice"><code class="c">// Prints &quot;Choo Choo&quot;</code></code></li>
+            <li><code class="code-voice"><code class="c">// Eredmény: &quot;Choo Choo&quot;</code></code></li>
         </ol>
       </div>
   </div>
@@ -184,19 +184,19 @@
 </section>
 <section class="section">
 	<a id="TP40016643-CH17-ID199">&#x200c;</a>
-  <h3 class="section-name">Overriding Properties</h3>
-  <p class="para">You can override an inherited instance or type property to provide your own custom getter and setter for that property, or to add property observers to enable the overriding property to observe when the underlying property value changes.</p>
+  <h3 class="section-name">Tulajdonságok felülírása</h3>
+  <p class="para">Lehetőség van egy öröklött példány- vagy típus tulajdonságok felülírására is, saját getter és setter definiálható hozzájuk vagy akár tulajdonság megfigyelőt rendelhetünk hozzájuk, hogy a felülíró tulajdonság értesüljön róla, ha a mögöttes tulajdonság értéke megváltozik.</p>
   <section class="section">
 	<a id="TP40016643-CH17-ID200">&#x200c;</a>
-  <h3 class="section-name">Overriding Property Getters and Setters</h3>
-  <p class="para">You can provide a custom getter (and setter, if appropriate) to override <em>any</em> inherited property, regardless of whether the inherited property is implemented as a stored or computed property at source. The stored or computed nature of an inherited property is not known by a subclass—it only knows that the inherited property has a certain name and type. You must always state both the name and the type of the property you are overriding, to enable the compiler to check that your override matches a superclass property with the same name and type.</p><p class="para">You can present an inherited read-only property as a read-write property by providing both a getter and a setter in your subclass property override. You cannot, however, present an inherited read-write property as a read-only property.</p><div class="note">
+  <h3 class="section-name">Tulajdonság getter és setter felülírása</h3>
+  <p class="para">Saját getter (és setter, ha szükséges) hozható létre hogy felülírjunk <em>bármilyen</em> örökölt tulajdonságot, függetlenül attól, hogy tárolt vagy kalkulált tulajdonságként lettek azok implementálva. Az örökölt tulajdonság számított vagy tárolt jellege nem ismert a származtatott osztály számára, csupán a tulajdonság nevét és típusát ismeri. A felülírandó tulajdonság nevét és típusát mindig meg kell határozni, hogy a fordító ellenőrizni tudja azok meglétét az ősosztályban.</p><p class="para">Akár arra is lehetőség van, hogy egy csak olvasható tulajdonságot írhatóvá tegyünk a getter és setter implementációójával a származtatott osztályban. Viszont nincs lehetőségünk egy már írható tulajdonságot csak olvashatóvá tenni.</p><div class="note">
   <aside class="aside">
-    	<p class="aside-title uppercase">Note</p>
-    	<p class="para">If you provide a setter as part of a property override, you must also provide a getter for that override. If you don’t want to modify the inherited property’s value within the overriding getter, you can simply pass through the inherited value by returning <code class="code-voice">super.someProperty</code> from the getter, where <code class="code-voice">someProperty</code> is the name of the property you are overriding.
+    	<p class="aside-title uppercase">Megjegyzés</p>
+    	<p class="para">Ha egy setter-t definiálunk a felülíró tulajdonsághoz, akkor a getter felülírása is kötelező. Ha nem akarod módosítani az örökölt tulajdonság getter implementációját, akkor egyszerűen csak passzoljuk vissza az értéket a <code class="code-voice">super.someProperty</code> használatával a felülíró getter-ből, ahol a <code class="code-voice">someProperty</code> a felülírandó tulajdonság neve.
     	</p>
     
   </aside>
-</div><p class="para">The following example defines a new class called <code class="code-voice">Car</code>, which is a subclass of <code class="code-voice">Vehicle</code>. The <code class="code-voice">Car</code> class introduces a new stored property called <code class="code-voice">gear</code>, with a default integer value of <code class="code-voice">1</code>. The <code class="code-voice">Car</code> class also overrides the <code class="code-voice">description</code> property it inherits from <code class="code-voice">Vehicle</code>, to provide a custom description that includes the current gear:</p><section class="code-listing">
+</div><p class="para">A következő példában egy <code class="code-voice">Car</code> nevű osztályt definiálunk, ami a <code class="code-voice">Vehicle</code> osztályból származik. A <code class="code-voice">Car</code> osztályban bevezetünk egy <code class="code-voice">gear</code> nevű új tárolt tulajdonságot, aminek alapértelmezett értéke <code class="code-voice">1</code> lesz. Továbbá a <code class="code-voice">Car</code> osztályban felülírjuk a <code class="code-voice">Vehicle</code> osztálytól örökölt <code class="code-voice">description</code> tulajdonságot, hogy még specifikusabb leírást biztosítsunk, ami tartalmazza majd az aktuális sebességfokozatot is:</p><section class="code-listing">
   
   <div class="code-sample">
       <div class="Swift">
@@ -204,13 +204,13 @@
             <li><code class="code-voice"><code class="kt">class</code> <code class="vc">Car</code>: <code class="n"><!-- a href="" logicalPath="" -->Vehicle<!-- /a --></code> {</code></li>
             <li><code class="code-voice">    <code class="kt">var</code> <code class="vc">gear</code> = <code class="m">1</code></code></li>
             <li><code class="code-voice">    <code class="kt">override</code> <code class="kt">var</code> <code class="vc">description</code>: <code class="n"><!-- a href="" logicalPath="" -->String<!-- /a --></code> {</code></li>
-            <li><code class="code-voice">        <code class="kt">return</code> <code class="kt">super</code>.<code class="vc">description</code> + <code class="s">&quot; in gear </code>\(<code class="vc">gear</code>)<code class="s">&quot;</code></code></li>
+            <li><code class="code-voice">        <code class="kt">return</code> <code class="kt">super</code>.<code class="vc">description</code> + <code class="s">&quot; </code>\(<code class="vc">gear</code>)<code class="s">. sebességi fokozatban&quot;</code></code></li>
             <li><code class="code-voice">    }</code></li>
             <li><code class="code-voice">}</code></li>
         </ol>
       </div>
   </div>
-</section><p class="para">The override of the <code class="code-voice">description</code> property starts by calling <code class="code-voice">super.description</code>, which returns the <code class="code-voice">Vehicle</code> class’s <code class="code-voice">description</code> property. The <code class="code-voice">Car</code> class’s version of <code class="code-voice">description</code> then adds some extra text onto the end of this description to provide information about the current gear.</p><p class="para">If you create an instance of the <code class="code-voice">Car</code> class and set its <code class="code-voice">gear</code> and <code class="code-voice">currentSpeed</code> properties, you can see that its <code class="code-voice">description</code> property returns the tailored description defined within the <code class="code-voice">Car</code> class:</p><section class="code-listing">
+</section><p class="para">A <code class="code-voice">description</code> felülírt tulajdonság implementációja egy <code class="code-voice">super.description</code> hívással kezdődik, ami visszaadja a <code class="code-voice">Vehicle</code> osztály <code class="code-voice">description</code> tulajdonság implementáció szerinti értékét. A <code class="code-voice">Car</code> osztály <code class="code-voice">description</code> tulajdonságában ezután még a megkapott leíráshoz hozzáfűzzük a jelenlegi sebességfokozattal kapcsolatos információt.</p><p class="para">Ha létrehozunk egy új <code class="code-voice">Car</code> példányt és beállítjuk a <code class="code-voice">gear</code> és <code class="code-voice">currentSpeed</code> tulajdonságok értékét, akkor a <code class="code-voice">description</code> tulajdonság a <code class="code-voice">Car</code> osztályban meghatározott szöveget fogja visszaadni számunkra:</p><section class="code-listing">
   
   <div class="code-sample">
       <div class="Swift">
@@ -218,8 +218,8 @@
             <li><code class="code-voice"><code class="kt">let</code> <code class="vc">car</code> = <code class="vc">Car</code>()</code></li>
             <li><code class="code-voice"><code class="vc">car</code>.<code class="vc">currentSpeed</code> = <code class="m">25.0</code></code></li>
             <li><code class="code-voice"><code class="vc">car</code>.<code class="vc">gear</code> = <code class="m">3</code></code></li>
-            <li><code class="code-voice"><code class="vc">print</code>(<code class="s">&quot;Car: </code>\(<code class="vc">car</code>.<code class="vc">description</code>)<code class="s">&quot;</code>)</code></li>
-            <li><code class="code-voice"><code class="c">// Car: traveling at 25.0 miles per hour in gear 3</code></code></li>
+            <li><code class="code-voice"><code class="vc">print</code>(<code class="s">&quot;Autó: </code>\(<code class="vc">car</code>.<code class="vc">description</code>)<code class="s">&quot;</code>)</code></li>
+            <li><code class="code-voice"><code class="c">// Autó: jelenleg 25.0 km/h sebességgel halad 3. sebességi fokozatban</code></code></li>
         </ol>
       </div>
   </div>
@@ -228,15 +228,15 @@
 </section>
 <section class="section">
 	<a id="TP40016643-CH17-ID201">&#x200c;</a>
-  <h3 class="section-name">Overriding Property Observers</h3>
-  <p class="para">You can use property overriding to add property observers to an inherited property. This enables you to be notified when the value of an inherited property changes, regardless of how that property was originally implemented. For more information on property observers, see <a rel="me" data-id="//apple_ref/doc/uid/TP40016643-CH14-ID262" href="Properties.xhtml#TP40016643-CH14-ID262">Property Observers</a>.</p><div class="note">
+  <h3 class="section-name">Tulajdonság megfigyelők felülírása</h3>
+  <p class="para">A tulajdonságok felülírásával megfigyelőt rendelhetünk egy örökölt tulajdonsághoz. Ez lehetőséget biztosít számunkra, hogy értesüljünk, ha egy örökölt tulajdonság értéke megváltozott, függetlenül attól, hogy miként volt eredetileg implementálva a tulajdonság. Tovább információt a tulajdonság megfigyelőkről itt találhatsz: <a rel="me" data-id="//apple_ref/doc/uid/TP40016643-CH14-ID262" href="Properties.xhtml#TP40016643-CH14-ID262">Tulajdonság megfigyelők</a>.</p><div class="note">
   <aside class="aside">
-    	<p class="aside-title uppercase">Note</p>
-    	<p class="para">You cannot add property observers to inherited constant stored properties or inherited read-only computed properties. The value of these properties cannot be set, and so it is not appropriate to provide a <code class="code-voice">willSet</code> or <code class="code-voice">didSet</code> implementation as part of an override.
+    	<p class="aside-title uppercase">Megjegyzés</p>
+    	<p class="para">Nincs lehetőség örökölt konstans tárolt vagy csak olvasható kalkulált tulajdonságokhoz megfigyelőt rendelni. Ezeknek a tulajdonságoknak az értékét nem lehet beállítani és így nincs értelme a <code class="code-voice">willSet</code> vagy <code class="code-voice">didSet</code> megfigyelőket implementálni.
     	</p>
-    <p class="para">Note also that you cannot provide both an overriding setter and an overriding property observer for the same property. If you want to observe changes to a property’s value, and you are already providing a custom setter for that property, you can simply observe any value changes from within the custom setter.</p>
+    <p class="para">Szintén vegyük figyelembe, hogy nincs lehetőség egyszerre felülírni egy setter-t és egy megfigyelőt ugyanazon tulajdonsághoz. Ha mégis szeretnél értesülni egy tulajdonság értékének változásáról, miközben már felülbíráltad a setter-t, akkor figyeljük meg az értékek változását az adott setter-en belül.</p>
   </aside>
-</div><p class="para">The following example defines a new class called <code class="code-voice">AutomaticCar</code>, which is a subclass of <code class="code-voice">Car</code>. The <code class="code-voice">AutomaticCar</code> class represents a car with an automatic gearbox, which automatically selects an appropriate gear to use based on the current speed:</p><section class="code-listing">
+</div><p class="para">A következő példában létrehozunk egy <code class="code-voice">AutomaticCar</code> osztály, aminek a <code class="code-voice">Car</code> lesz az őse. Az <code class="code-voice">AutomaticCar</code> a nevéből következően automata valtós autókat hivatott reprezentálni, ami a jelenlegi sebesség függvényében határozza meg a megfelelő sebességi fokozatot:</p><section class="code-listing">
   
   <div class="code-sample">
       <div class="Swift">
@@ -251,15 +251,15 @@
         </ol>
       </div>
   </div>
-</section><p class="para">Whenever you set the <code class="code-voice">currentSpeed</code> property of an <code class="code-voice">AutomaticCar</code> instance, the property’s <code class="code-voice">didSet</code> observer sets the instance’s <code class="code-voice">gear</code> property to an appropriate choice of gear for the new speed. Specifically, the property observer chooses a gear that is the new <code class="code-voice">currentSpeed</code> value divided by <code class="code-voice">10</code>, rounded down to the nearest integer, plus <code class="code-voice">1</code>. A speed of <code class="code-voice">35.0</code> produces a gear of <code class="code-voice">4</code>:</p><section class="code-listing">
+</section><p class="para">Amikor beállítod az <code class="code-voice">AutomaticCar</code> példány <code class="code-voice">currentSpeed</code> tulajdonságának értékét, akkor a tulajdonság <code class="code-voice">didSet</code> megfigyelője beállítja az adott példány <code class="code-voice">gear</code> tulajdonságát az új sebességnek megfelelő sebbességfokozat értékére. A sebességfokozat értékét úgy állapítjuk meg a megfigyelőben, hogy a <code class="code-voice">currentSpeed</code> új értékét osztjuk <code class="code-voice">10</code>-el, lefelé kerekítve a legközelebbi egész számra és megnöveljük az értéket <code class="code-voice">1</code>-el. Így pl. a <code class="code-voice">35.0</code> km/h-s sebesség <code class="code-voice">4</code>-es sebességi fokozatot fog eredményezni:</p><section class="code-listing">
   
   <div class="code-sample">
       <div class="Swift">
         <ol class="code-lines">
             <li><code class="code-voice"><code class="kt">let</code> <code class="vc">automatic</code> = <code class="vc">AutomaticCar</code>()</code></li>
             <li><code class="code-voice"><code class="vc">automatic</code>.<code class="vc">currentSpeed</code> = <code class="m">35.0</code></code></li>
-            <li><code class="code-voice"><code class="vc">print</code>(<code class="s">&quot;AutomaticCar: </code>\(<code class="vc">automatic</code>.<code class="vc">description</code>)<code class="s">&quot;</code>)</code></li>
-            <li><code class="code-voice"><code class="c">// AutomaticCar: traveling at 35.0 miles per hour in gear 4</code></code></li>
+            <li><code class="code-voice"><code class="vc">print</code>(<code class="s">&quot;Automata: </code>\(<code class="vc">automatic</code>.<code class="vc">description</code>)<code class="s">&quot;</code>)</code></li>
+            <li><code class="code-voice"><code class="c">// Automata: jelenleg 35.0 km/h sebességgel halad 4. sebességi fokozatban</code></code></li>
         </ol>
       </div>
   </div>
@@ -272,8 +272,8 @@
 </section>
 <section class="section">
 	<a id="TP40016643-CH17-ID202">&#x200c;</a>
-  <h3 class="section-name">Preventing Overrides</h3>
-  <p class="para">You can prevent a method, property, or subscript from being overridden by marking it as <em>final</em>. Do this by writing the <code class="code-voice">final</code> modifier before the method, property, or subscript’s introducer keyword (such as <code class="code-voice">final var</code>, <code class="code-voice">final func</code>, <code class="code-voice">final class func</code>, and <code class="code-voice">final subscript</code>).</p><p class="para">Any attempt to override a final method, property, or subscript in a subclass is reported as a compile-time error. Methods, properties, or subscripts that you add to a class in an extension can also be marked as final within the extension’s definition.</p><p class="para">You can mark an entire class as final by writing the <code class="code-voice">final</code> modifier before the <code class="code-voice">class</code> keyword in its class definition (<code class="code-voice">final class</code>). Any attempt to subclass a final class is reported as a compile-time error.</p>
+  <h3 class="section-name">Felülírás megelőzése</h3>
+  <p class="para">A <em>final</em> használatával tudjuk megvédeni egy metódus, tulajdonság vagy index felülírását. Ehhez a <code class="code-voice">final</code> módosítot rakjuk a metódushoz, tulajdonsághoz vagy indexhez tartozó kulcsszó elé (azaz <code class="code-voice">final var</code>, <code class="code-voice">final func</code>, <code class="code-voice">final class func</code> illetve <code class="code-voice">final subscript</code>).</p><p class="para">Ha egy final módosítóval ellátott metódust, tulajdonságot vagy indexet próbálunk meg felülírni egy származtatott osztályban, akkor már fordításkor hibát fogunk kapni.</p><p class="para">De akár egy egész osztály esetén használható a <code class="code-voice">final</code> módosító, elég csak a <code class="code-voice">class</code> kulcsszó elé írni (<code class="code-voice">final class</code>). Ezután minden származtatási kísérlet fordítási hibával fog járni az adott osztály esetén.</p>
   
 </section>
 
