@@ -21,7 +21,7 @@ For more info please visit: [Swift.org - Documentation](https://swift.org/docume
 - Classes and Structures
 - Properties
 - Methods
-- Subscripts
+- Subscripts - [Indexek](markdown/Subscripts.md)
 - Inheritance  - [Öröklődés](markdown/Inheritance.md)
 - Initialization
 - Deinitialization
