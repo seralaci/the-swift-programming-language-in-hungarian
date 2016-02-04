@@ -20,7 +20,7 @@
       <section class="section">
 	<a id="TP40016643-CH16-ID306">&#x200c;</a>
   <h3 class="section-name">Index szintaxis</h3>
-  <p class="para">Az indexek segítségével egy adott típus pédányait tudjuk lekérdezni, ha a példány neve után szögletes zárójelek között megadjuk az index egy vagy több paraméterét A szintaxis nagyon hasonlatos a példánymetódusok és számolt tulajdonságok szintaxisához. Az index definiálásához a <code class="code-voice">subscript</code> kulcsszó használata szükséges, majd fel kell sorolnuk a bemeneti paramétereket és a visszaadott típust, ugyanúgy mint a példánymetódusok esetén. Viszont a példánymetódusokkal ellentétben, az indexek olvashatóak és írhatóak is lehetnek. Ezt a tulajdonságokhoz hasonlóan getter és setter segítségével tudjuk elérnix:</p><section class="code-listing">
+  <p class="para">Az indexek segítségével egy adott típus példányait tudjuk lekérdezni, ha a példány neve után szögletes zárójelek között megadjuk az index egy vagy több paraméterét A szintaxis nagyon hasonlatos a példánymetódusok és számolt tulajdonságok szintaxisához. Az index definiálásához a <code class="code-voice">subscript</code> kulcsszó használata szükséges, majd fel kell sorolnunk a bemeneti paramétereket és a visszaadott típust, ugyanúgy mint a példánymetódusok esetén. Viszont a példánymetódusokkal ellentétben, az indexek olvashatóak és írhatók is lehetnek. Ezt a tulajdonságokhoz hasonlóan getter és setter segítségével tudjuk elérni:</p><section class="code-listing">
   
   <div class="code-sample">
       <div class="Swift">
@@ -77,7 +77,7 @@
 <section class="section">
 	<a id="TP40016643-CH16-ID307">&#x200c;</a>
   <h3 class="section-name">Index használata</h3>
-  <p class="para">Az "index" pontos jelentése nagyban függ a használat kontextusától. Az indexeket általában egy kollekció, lista vagy szekvencia elemeinek egyszerű eléréséhez szokták használni. De akármilyen implementáció készíthető, attól függően, hogy mi szolgálja legjobban egy adott osztály vagy struktúra érdekeit.</p><p class="para">Például a Swift <code class="code-voice">Dictionary</code> típusa egyolyan indexeket implementál, amivel egy <code class="code-voice">Dictionary</code> példány elemeit tudjuk olvasni és írni. Úgy tudunk egy értéket megadni a dictionary számára, ha a megadott típus szerinti kulcsot kapcsos zárójelbe rakunk és megadjuk az adott indexhez tárolni kívánt értéket:</p><section class="code-listing">
+  <p class="para">Az "index" pontos jelentése nagyban függ a használat kontextusától. Az indexeket általában egy kollekció, lista vagy szekvencia elemeinek egyszerű eléréséhez szokták használni. De akármilyen implementáció készíthető, attól függően, hogy mi szolgálja legjobban egy adott osztály vagy struktúra érdekeit.</p><p class="para">Például a Swift <code class="code-voice">Dictionary</code> típusa egy olyan indexeket implementál, amivel egy <code class="code-voice">Dictionary</code> példány elemeit tudjuk olvasni és írni. Úgy tudunk egy értéket megadni a dictionary számára, ha a megadott típus szerinti kulcsot kapcsos zárójelbe rakunk és megadjuk az adott indexhez tárolni kívánt értéket:</p><section class="code-listing">
   
   <div class="code-sample">
       <div class="Swift">
@@ -87,10 +87,10 @@
         </ol>
       </div>
   </div>
-</section><p class="para">A fenti példában definiálunk egy <code class="code-voice">numberOfLegs</code> nevű változót és egy dictionary literal segítségével inicializáljuk, ami három kulcs-érték párost tartalmaz. A <code class="code-voice">numberOfLegs</code> dictionary pontos típusa <code class="code-voice">[String: Int]</code> lesz. Miután a dictionary létre lett hozva, a következő sorban a <code class="code-voice">&quot;bird&quot;</code> <code class="code-voice">String</code> típusú kulcssal az <code class="code-voice">Int</code> típusú <code class="code-voice">2</code> számot adjuk hozzá a dictionary-höz.</p><p class="para">További információt a <code class="code-voice">Dictionary</code> indexelésével kapcsolatban itt találhatsz: <a rel="me" data-id="//apple_ref/doc/uid/TP40016643-CH8-ID116" href="CollectionTypes.xhtml#TP40016643-CH8-ID116">Dictionary hozzáférése és módosítása</a>.</p><div class="note">
+</section><p class="para">A fenti példában definiálunk egy <code class="code-voice">numberOfLegs</code> nevű változót és egy dictionary literal segítségével inicializáljuk, ami három kulcs-érték párost tartalmaz. A <code class="code-voice">numberOfLegs</code> dictionary pontos típusa <code class="code-voice">[String: Int]</code> lesz. Miután a dictionary létre lett hozva, a következő sorban a <code class="code-voice">&quot;bird&quot;</code> <code class="code-voice">String</code> típusú kulccsal az <code class="code-voice">Int</code> típusú <code class="code-voice">2</code> számot adjuk hozzá a dictionary-höz.</p><p class="para">További információt a <code class="code-voice">Dictionary</code> indexelésével kapcsolatban itt találhatsz: <a rel="me" data-id="//apple_ref/doc/uid/TP40016643-CH8-ID116" href="CollectionTypes.xhtml#TP40016643-CH8-ID116">Dictionary hozzáférése és módosítása</a>.</p><div class="note">
   <aside class="aside">
     	<p class="aside-title uppercase">Megjegyzés</p>
-    	<p class="para">A Swift <code class="code-voice">Dictionary</code> típusának kulcs-érték indexelését úgy valósították meg, hogy az index egy <em>opcionális</em> típust fogad és tér vissza vele. A fenti <code class="code-voice">numberOfLegs</code> dictionary, kulcs-érték értéke <code class="code-voice">Int?</code> típust fogad és ad vissza, azaz “opcionális int”. A <code class="code-voice">Dictionary</code> típus ezt az opcionális megközelítést használja azon egyszerű ok miatt, hogy nem minden kulcshoz tartozik érték illetve egy adott kulcshoz rendlt értéke egyszerűen törölhető a <code class="code-voice">nil</code> értékül adásával.
+    	<p class="para">A Swift <code class="code-voice">Dictionary</code> típusának kulcs-érték indexelését úgy valósították meg, hogy az index egy <em>opcionális</em> típust fogad és tér vissza vele. A fenti <code class="code-voice">numberOfLegs</code> dictionary, kulcs-érték értéke <code class="code-voice">Int?</code> típust fogad és ad vissza, azaz “opcionális int”. A <code class="code-voice">Dictionary</code> típus ezt az opcionális megközelítést használja azon egyszerű ok miatt, hogy nem minden kulcshoz tartozik érték illetve egy adott kulcshoz rendelt értéke egyszerűen törölhető a <code class="code-voice">nil</code> értékül adásával.
     	</p>
     
   </aside>
@@ -100,7 +100,7 @@
 <section class="section">
 	<a id="TP40016643-CH16-ID308">&#x200c;</a>
   <h3 class="section-name">Index opciók</h3>
-  <p class="para">Az indexek akárhány input paraméterrel rendelkezhetnek és ezek típusa is bármilyen lehet. Tovább a visszaadott típus is bármi lehet. Az indexek használhatnak fix és változó számú paramétereket is, de nem lehet in-out paramétereket vagy alapértelmezett paraméter értékeket használni.</p><p class="para">Egy osztály vagy struktúra tetszőleges számú indexet tartalmazhat, a megfelelő index a használt érték típusa alapján vagy a szögletes zárójelben megadott paraméter(ek) típusa alapján kerül majd kiválasztásra. Több index egyidejű definicióját szokás <em>index túlterhelésnek (subscript overloading)</em> is nevezni.</p><p class="para">A legtöbb esetben csupán egy paramétert szoktunk használni az indexek esetén, de ha szükségét érezzük, semmi akadálya több paraméter használatának. A következő példában a <code class="code-voice">Matrix</code> struktúrát hozzuk létre ami egy kétdimenziós <code class="code-voice">Double</code> típusú mátrixot reprezentál. A <code class="code-voice">Matrix</code> struktúra indexe két integer paramétert vár tőlünk:</p><section class="code-listing">
+  <p class="para">Az indexek akárhány input paraméterrel rendelkezhetnek és ezek típusa is bármilyen lehet. Tovább a visszaadott típus is bármi lehet. Az indexek használhatnak fix és változó számú paramétereket is, de nem lehet in-out paramétereket vagy alapértelmezett paraméter értékeket használni.</p><p class="para">Egy osztály vagy struktúra tetszőleges számú indexet tartalmazhat, a megfelelő index a használt érték típusa alapján vagy a szögletes zárójelben megadott paraméter(ek) típusa alapján kerül majd kiválasztásra. Több index egyidejű definicióját szokás <em>index túlterhelésnek (subscript overloading)</em> is nevezni.</p><p class="para">A legtöbb esetben csupán egy paramétert szoktunk használni az indexek esetén, de ha szükségét érezzük, semmi akadálya több paraméter használatának. A következő példában a <code class="code-voice">Matrix</code> struktúrát hozzuk létre, ami egy kétdimenziós <code class="code-voice">Double</code> típusú mátrixot reprezentál. A <code class="code-voice">Matrix</code> struktúra indexe két integer paramétert vár tőlünk:</p><section class="code-listing">
   
   <div class="code-sample">
       <div class="Swift">
@@ -130,7 +130,7 @@
         </ol>
       </div>
   </div>
-</section><p class="para">A <code class="code-voice">Matrix</code> inicializálója két paramétert fogad: <code class="code-voice">rows</code> és <code class="code-voice">columns</code>, majd létrehoz egy tömböt, ami elég nagy <code class="code-voice">rows * columns</code> számú <code class="code-voice">Double</code> típusú érték tárolására. A mátrix minden értéke alapértékként <code class="code-voice">0.0</code> lesz. Ehhez a tömb méretét és a <code class="code-voice">0.0</code> alapértéket átadjuk a tömb inicializálójának. Az inicializálóról bővebben itt olvashatsz <a rel="me" data-id="//apple_ref/doc/uid/TP40016643-CH8-ID501" href="CollectionTypes.xhtml#TP40016643-CH8-ID501">Egy tömb létrehozásak alapértékkel</a>.</p><p class="para">Létre tudsz hozni egy új <code class="code-voice">Matrix</code> példányt a sorok és oszlopok számának megadásával az inicializáló számára:</p><section class="code-listing">
+</section><p class="para">A <code class="code-voice">Matrix</code> inicializálója két paramétert fogad: <code class="code-voice">rows</code> és <code class="code-voice">columns</code>, majd létrehoz egy tömböt, ami elég nagy <code class="code-voice">rows * columns</code> számú <code class="code-voice">Double</code> típusú érték tárolására. A mátrix minden értéke alapértékként <code class="code-voice">0.0</code> lesz. Ehhez a tömb méretét és a <code class="code-voice">0.0</code> alapértéket átadjuk a tömb inicializálójának. Az inicializálóról bővebben itt olvashatsz <a rel="me" data-id="//apple_ref/doc/uid/TP40016643-CH8-ID501" href="CollectionTypes.xhtml#TP40016643-CH8-ID501">Egy tömb létrehozása alapértékkel</a>.</p><p class="para">Létre tudsz hozni egy új <code class="code-voice">Matrix</code> példányt a sorok és oszlopok számának megadásával az inicializáló számára:</p><section class="code-listing">
   
   <div class="code-sample">
       <div class="Swift">
@@ -139,7 +139,7 @@
         </ol>
       </div>
   </div>
-</section><p class="para">Az előző példában létrehozott <code class="code-voice">Matrix</code> példány két sort és két oszlopot tartalmaz. A <code class="code-voice">Matrix</code> példány <code class="code-voice">grid</code> tömbje a mátrix kilapított, egy dimenziós változatát reprezentálja, bel felülről jobb alulra haladva:</p><div class="figure">
+</section><p class="para">Az előző példában létrehozott <code class="code-voice">Matrix</code> példány két sort és két oszlopot tartalmaz. A <code class="code-voice">Matrix</code> példány <code class="code-voice">grid</code> tömbje a mátrix kilapított, egy dimenziós változatát reprezentálja, bal felülről jobb alulra haladva:</p><div class="figure">
 	<span class="caption"></span>
 	<img src="Art/subscriptMatrix01_2x.png" alt="image: ../Art/subscriptMatrix01_2x.png" width="280" height="173" />
 </div><p class="para">A mátrix egy elemének az értékét, a szögletes zárójelek közé rakott, vesszővel elválasztott sor és oszlop értékek megadásával lehet megváltoztatni:</p><section class="code-listing">
@@ -166,7 +166,7 @@
         </ol>
       </div>
   </div>
-</section><p class="para">Hibához fog vezetni, ha olyan indexet használunk ami a mátrix határain kívól esik:</p><section class="code-listing">
+</section><p class="para">Hibához fog vezetni, ha olyan indexet használunk, ami a mátrix határain kívól esik:</p><section class="code-listing">
   
   <div class="code-sample">
       <div class="Swift">
